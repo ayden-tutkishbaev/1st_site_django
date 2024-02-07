@@ -11,7 +11,7 @@
     <div class="container mt-3 mb-3">
         <div class="d-flex justify-content-around">
             {% for category in categories %}
-            <a href="" class="btn btn-outline-success">
+            <a href="{% url 'category_page' category.id %}" class="btn btn-outline-success">
                 <b>{{ category.title }}</b>
             </a>
             {% endfor %}
