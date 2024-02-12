@@ -28,3 +28,30 @@ def category_page_view(request, category_id):
 
     return render(request, 'blog/category_page.html', context)
 
+
+def about_me_page(request):
+    return render(request, 'blog/about_me_page.html')
+
+
+
+def works_page(request):
+    return render(request, 'blog/works_page.html')
+
+
+
+def article_detail_page_view(request, article_id):
+    article = Article.objects.get(id=article_id)
+    last_articles = Article.objects.all().order_by('-created_at')
+
+
+    context = {
+        'title': f'{article.title}',
+        'article': article,
+        'last_articles': last_articles
+    }
+
+
+    return render(request, 'blog/article_detail.html', context)
+
+
+

@@ -37,7 +37,9 @@
                             </div>
 
                         </div>
-                        <img src="..." class="card-img-top" alt="...">
+                        <a href="{% url 'article_detail' article.id %}">
+                            <img src="..." class="card-img-top" alt="...">
+                        </a>
                         <div class="card-body">
                             <h5 class="card-title">{{ article.title }}</h5>
                             <p class="card-text">{{ article.description }}</p>
