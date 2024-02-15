@@ -1,1 +1,62 @@
 {% extends 'base.html' %}
+
+{% block title %}
+{{ title }}
+{% endblock title %}
+
+{% block carousel %}
+{% endblock carousel %}
+
+{% block main %}
+
+<div class="">
+    <div class="d-flex justify-content-between">
+        <div class="col-7">
+            <div class="card">
+                <div class="card-header">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <b>Category: {{ article.category }}</b>
+                        </div>
+                        <div>
+                            <a href="" class="btn btn-danger">
+                                <b>DELETE</b>
+                            </a>
+                            <a href="" class="btn btn-warning">
+                                <b>EDIT</b>
+                            </a>
+                            <a href="" class="btn btn-success">
+                                <b>BACK</b>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+                <a href="{% url 'article_detail' article.id %}">
+                    <img src="{{ article.photo.url }}" class="card-img-top" alt="...">
+                </a>
+                <div class="card-body">
+                    <h5 class="card-title">{{ article.title }}</h5>
+                    <p class="card-text">{{ article.description }}</p>
+                </div>
+
+                <div class="card-footer">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <b>Автор:</b>
+                        </div>
+                        <div>
+                            <b>{{ article.created_at }}</b>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-4">
+
+        </div>
+    </div>
+</div>
+
+{% endblock main %}
