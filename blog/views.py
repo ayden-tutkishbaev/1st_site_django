@@ -43,6 +43,10 @@ def article_detail_page_view(request, article_id):
     article = Article.objects.get(id=article_id)
     last_articles = Article.objects.all().order_by('-created_at')
 
+    if article.author != request.user:
+        article.views += 1
+        article.save()
+
     context = {
         'title': f'{article.title}',
         'article': article,
@@ -57,7 +61,9 @@ def add_article_view(request):
         form = AddArticleForm(data=request.POST,
                               files=request.FILES)
         if form.is_valid():
-            article = form.save()
+            article = form.save(commit=False)
+            article.author = request.user
+            article.save()
             return redirect('article_detail', article.pk)
         else:
             pass
