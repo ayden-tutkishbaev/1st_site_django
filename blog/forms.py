@@ -1,8 +1,9 @@
 from django import forms
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth.forms import AuthenticationForm, \
+    UserCreationForm
 
-from .models import Article
+from .models import Article, Profile
 
 
 class AddArticleForm(forms.ModelForm):
@@ -42,8 +43,12 @@ class LoginUser(AuthenticationForm):
 class RegisterUser(UserCreationForm):
     username = forms.CharField(label='Username', max_length=20, widget=forms.TextInput(attrs={'class': 'form-control',
                                                                                               'placeholder': 'username'}))
-    name = forms.CharField(label='Your name', widget=forms.TextInput(attrs={'class': 'form-control',
-                                                                            'placeholder': 'name'}))
+    first_name = forms.CharField(label='Your first name', widget=forms.TextInput(attrs={'class': 'form-control',
+                                                                                        'placeholder': 'First name'}))
+    last_name = forms.CharField(label='Your last name', widget=forms.TextInput(attrs={'class': 'form-control',
+                                                                                      'placeholder': 'Last name'}))
+    # name = forms.CharField(label='Name', widget=forms.TextInput(attrs={'class': 'form-control',
+    #                                                                    'placeholder': 'name'}))
     email = forms.EmailField(label='Your email address', widget=forms.EmailInput(attrs={'class': 'form-control',
                                                                                         'placeholder': 'email'}))
     password1 = forms.CharField(label='Create a password', max_length=20,
@@ -56,7 +61,62 @@ class RegisterUser(UserCreationForm):
     class Meta:
         model = User
         fields = ('username',
-                  'name',
+                  # 'name',
+                  'first_name',
+                  'last_name',
                   'email',
                   'password1',
                   'password2')
+
+
+class UserForm(forms.ModelForm):
+    username = forms.CharField(label='Username', max_length=20, widget=forms.TextInput(attrs={'class': 'form-control',
+                                                                                              'placeholder': 'username'}))
+    first_name = forms.CharField(label="Your first name",
+                                 widget=forms.TextInput(attrs={
+                                     'class': 'form-control',
+                                     'placeholder': 'Your first name'
+                                 }))
+    last_name = forms.CharField(label="Your last name",
+                                widget=forms.TextInput(attrs={
+                                    'class': 'form-control',
+                                    'placeholder': 'Your last name'
+                                }))
+
+    # name = forms.CharField(label='Your name', widget=forms.TextInput(attrs={'class': 'form-control',
+    #                                                                         'placeholder': 'name'}))
+    email = forms.EmailField(label='Your email address', widget=forms.EmailInput(attrs={'class': 'form-control',
+                                                                                        'placeholder': 'email'}))
+
+    class Meta:
+        model = User
+        fields = ('username', 'first_name', 'last_name', 'email')
+
+
+class ProfileForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = (
+            'phone',
+            'address',
+            'job',
+            'image'
+        )
+
+    widgets = {
+        'job': forms.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Job'
+        }),
+        'address': forms.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Job'
+        }),
+        'phone': forms.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Phone'
+        }),
+        'image': forms.FileInput(attrs={
+            'class': 'form-control'
+        })
+    }

@@ -16,5 +16,6 @@ class AdminArticle(admin.ModelAdmin):
 
 admin.site.register(Category)
 admin.site.register(Article, AdminArticle)
+admin.site.register(Profile)
 
 # Register your models here.

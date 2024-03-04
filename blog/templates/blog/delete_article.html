@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ title }}
+{% endblock title %}
+
+{% block carousel %}
+
+<h1 class="text-center mt-3">
+    Article deletion
+</h1>
+
+{% endblock carousel %}
+
+{% block main %}
+
+<div class="container d-flex justify-content-center">
+    <div class="col-6 m-4 card p-4">
+        <form action="" method="post">
+            {% csrf_token %}
+            <h5>Are you sure you want to delete the article named "{{ article.title }}"?</h5>
+            <br>
+            <input type="submit" class="btn btn-danger btn-lg" value="YES, DELETE!">
+            <a href="{% url 'article_detail' article.pk %}" class="btn btn-success btn-lg">
+                CANCEL
+            </a>
+        </form>
+    </div>
+</div>
+
+{% endblock main %}

@@ -21,3 +21,21 @@ class Article(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     author = models.ForeignKey(User, on_delete=models.CASCADE, editable=False)
+
+    def __str__(self):
+        return self.title
+
+
+class Profile(models.Model):
+    phone = models.CharField(max_length=255, default='+..............')
+    address = models.TextField(default='Somewhere')
+    job = models.CharField(max_length=255, default='not indicated')
+    image = models.ImageField(upload_to='profiles', null=True, blank=True)
+
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.user.username
+
+
+
