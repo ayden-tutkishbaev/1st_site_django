@@ -1,10 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<h6>HAHHAHAHHAHAHAHa</h6>
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block title %}
+{{ title }}
+{% endblock title %}
+
+{% block carousel %}
+{% endblock carousel %}
+
+{% block main %}
+
+<div class="container mt-3 mb-3">
+
+    <div class="d-flex justify-content-center">
+
+        <div class="col-6 card p-4 shadow">
+            <form action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ user_form.as_p }}
+                {{ profile_form.as_p }}
+                <button type="submit" class="btn btn-primary">
+                    Apply changes
+                </button>
+            </form>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock main %}

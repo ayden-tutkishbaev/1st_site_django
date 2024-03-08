@@ -48,7 +48,7 @@
                         <div class="card-footer">
                             <div class="d-flex justify-content-between">
                                 <div>
-                                    <b>Автор {{article.author}}</b>
+                                    <b>By <a href="{% url 'user_profile' article.author.id %}">{{article.author}}</a></b>
                                 </div>
                                 <div>
                                     <b>{{ article.created_at }}</b>

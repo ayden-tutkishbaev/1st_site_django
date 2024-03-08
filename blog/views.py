@@ -53,6 +53,11 @@ def article_detail_page_view(request, article_id):
         'last_articles': last_articles
     }
 
+    if request.user.is_authenticated:
+        context.update({
+            'form': CommentForm()
+        })
+
     return render(request, 'blog/article_detail.html', context)
 
 
@@ -203,7 +208,17 @@ def edit_profile(request, user_id):
     profile = Profile.objects.get(user=user)
 
     if request.method == 'POST':
-        pass
+        user_form = UserForm(instance=user,
+                             data=request.POST)
+        profile_form = ProfileForm(instance=profile,
+                                   data=request.POST,
+                                   files=request.FILES)
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
+            return redirect('user_profile', user.id)
+        else:
+            return redirect('edit_profile', user.id) # TODO error message
     else:
         user_form = UserForm(instance=user)
         profile_form = ProfileForm(instance=profile)
@@ -214,4 +229,4 @@ def edit_profile(request, user_id):
         'user_form': user_form
     }
 
-    return render(request, 'blog/edit_profile.html')
+    return render(request, 'blog/edit_profile.html', context)

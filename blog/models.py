@@ -38,4 +38,11 @@ class Profile(models.Model):
         return self.user.username
 
 
+class Comment(models.Model):
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    article = models.ForeignKey(Article, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+    text = models.TextField()
 
+    def __str__(self):
+        return self.author.username

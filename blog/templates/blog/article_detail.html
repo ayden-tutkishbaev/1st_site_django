@@ -19,11 +19,13 @@
                         <b>Category: {{ article.category }}</b>
                     </div>
                     <div>
+                        {% if request.user.is_authenticated and request.user.id == article.author.id %}
                         <a href="{% url 'article_delete' article.pk %}" class="btn btn-danger">
                             <b>DELETE</b>
                         </a>
                         <a href="{% url 'article_edit' article.pk %}" class="btn btn-warning">
                             <b>EDIT</b>
+                            {% endif %}
                         </a>
                         <a href="{% url 'index' %}" class="btn btn-success">
                             <b>BACK</b>
@@ -43,13 +45,22 @@
             <div class="card-footer">
                 <div class="d-flex justify-content-between">
                     <div>
-                        <b>Автор {{article.author}}</b>
+                        <b>By <a href="{% url 'user_profile' article.author.id %}"> {{article.author}}</a></b>
                     </div>
                     <div>
                         <b>{{ article.created_at }}</b>
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="card p-3">
+            <form action="" method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-primary">
+                    Add comment
+                </button>
+            </form>
         </div>
     </div>
 </div>
