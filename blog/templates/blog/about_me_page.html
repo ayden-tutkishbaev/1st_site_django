@@ -1,12 +1,50 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}
 {{ title }}
 {% endblock title %}
 
-{% block carousel %}
-{% endblock carousel %}
-
 {% block main %}
+
+<!-- About 3 - Bootstrap Brain Component -->
+<section class="py-3 py-md-5">
+    <div class="container mb-4 mb-md-5">
+        <div class="row justify-content-md-center">
+            <div class="col-12 col-md-10 col-xxl-8">
+                <img class="img-fluid rounded shadow" loading="lazy" src="{% static 'blog/images/images.jfif' %}" alt="">
+            </div>
+        </div>
+    </div>
+
+    <div class="container overflow-hidden">
+        <div class="row gy-2 gy-md-0 justify-content-xxl-center">
+            <div class="col-12 order-md-1 col-md-8 col-xxl-6">
+                <div class="text-center text-md-start">
+                    <h2 class="display-3 fw-bold lh-1">Ayden Tutkishbaev</h2>
+                    <p class="text-secondary fs-4 mb-2">Python developer</p>
+                    <hr class="w-25 mx-auto ms-md-0 mb-4 text-secondary">
+                    <p>Nam sit amet condimentum arcu. Vestibulum non convallis elit, nec finibus purus. Morbi a tortor
+                        vitae mauris volutpat lacinia in vel leo. Vestibulum ante ipsum primis in faucibus orci luctus
+                        et ultrices posuere cubilia curae; Aliquam vel dictum nisi.</p>
+                    <p>Duis bibendum lectus vitae posuere euismod. Nunc semper mauris sed justo consequat mollis.
+                        Suspendisse eu lectus ornare, pulvinar tortor eget, iaculis libero. Nullam non metus sed lacus
+                        luctus posuere. Morbi semper pharetra tortor sit amet mollis.</p>
+                </div>
+            </div>
+            <div class="col-12 order-md-0 col-md-4 col-xxl-4">
+                <div class="text-center text-md-start me-md-3 me-xl-5">
+                    <p class="mb-4">
+                        <span class="d-block display-6 lh-1">1</span>
+                        <span class="fs-4 text-secondary">year of experience</span>
+                    </p>
+                    <div class="d-grid">
+                        <button class="btn btn-primary btn-lg" type="button">Hire Me</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 {% endblock main %}
