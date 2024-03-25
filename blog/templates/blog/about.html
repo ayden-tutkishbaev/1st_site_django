@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block title %}
+{{ title }}
+{% endblock title %}
+
+{% block carousel %}
+{% endblock carousel %}
+
+{% block main %}
+
+
+<!-- About 1 - Bootstrap Brain Component -->
+<section class="py-3 py-md-5 py-xl-8">
+    <div class="container">
+        <div class="row gy-3 gy-md-4 gy-lg-0 align-items-lg-center">
+            <div class="col-12 col-lg-6 col-xl-5">
+                <img class="img-fluid rounded" loading="lazy" src="{% static 'blog/images/aa.jpeg' %}" alt="">
+            </div>
+            <div class="col-12 col-lg-6 col-xl-7">
+                <div class="row justify-content-xl-center">
+                    <div class="col-12 col-xl-11">
+                        <h2 class="h1 mb-3">What is this site?</h2>
+                        <p class="lead fs-4 text-secondary mb-3">On this site you can share with other users what you have witnessed so far.
+                        Trends, memes, news from the gaming world, anime and many other things!
+                        </p>
+                    </div>
+                </div>
+                <div>
+                    <a href="{% url 'index' %}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">GO!</a>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}

@@ -83,8 +83,6 @@ class UserForm(forms.ModelForm):
                                     'placeholder': 'Your last name'
                                 }))
 
-    # name = forms.CharField(label='Your name', widget=forms.TextInput(attrs={'class': 'form-control',
-    #                                                                         'placeholder': 'name'}))
     email = forms.EmailField(label='Your email address', widget=forms.EmailInput(attrs={'class': 'form-control',
                                                                                         'placeholder': 'email'}))
 
@@ -100,7 +98,8 @@ class ProfileForm(forms.ModelForm):
             'phone',
             'address',
             'job',
-            'image'
+            'image',
+            'description'
         )
 
     widgets = {
@@ -118,6 +117,10 @@ class ProfileForm(forms.ModelForm):
         }),
         'image': forms.FileInput(attrs={
             'class': 'form-control'
+        }),
+        'description': forms.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'About yourself'
         })
     }
 

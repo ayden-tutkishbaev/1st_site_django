@@ -7,7 +7,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
 
-
     <title>
         {% block title %}
 
@@ -34,12 +33,16 @@
 
 
 <main>
+
+    {% block sms%}
+    {% include 'components/_messages.html' %}
+    {% endblock sms %}
+
     {% block main %}
 
     {% endblock main %}
 
 </main>
-
 
 
 {% include 'components/_footer.html' %}

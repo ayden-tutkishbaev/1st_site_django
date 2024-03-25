@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 from .models import *
 from .forms import *
@@ -61,6 +63,7 @@ def article_detail_page_view(request, article_id):
     return render(request, 'blog/article_detail.html', context)
 
 
+@login_required(login_url='login')
 def add_article_view(request):
     if request.method == 'POST':
         form = AddArticleForm(data=request.POST,
@@ -69,9 +72,12 @@ def add_article_view(request):
             article = form.save(commit=False)
             article.author = request.user
             article.save()
+            messages.success(request, 'Article added successfully!')
             return redirect('article_detail', article.pk)
         else:
-            pass
+            for field in form.errors:
+                messages.error(request, form.errors[field.as_text()])
+            return redirect('add_article')
 
     elif request.method == 'GET':
         form = AddArticleForm()
@@ -89,11 +95,15 @@ def register_user(request):
         form = RegisterUser(data=request.POST)
         if form.is_valid():
             user = form.save()
+            messages.success(request, 'Registered successfully!')
             profile_user = Profile.objects.create(user=user)
             profile_user.save()
-            return redirect('login')
+            login(request, user)
+            return redirect('index')
         else:
-            pass
+            for field in form.errors:
+                messages.error(request, form.errors[field].as_text())
+            return redirect('register')
     else:
         form = RegisterUser()
 
@@ -112,11 +122,14 @@ def log_in_user(request):
             user = form.get_user()
             if user:
                 login(request, user)
+                messages.info(request, 'Logged in!')
                 return redirect('index')
             else:
-                pass
+                messages.error(request, 'Login or password is incorrect. Try again!')
+                return redirect('login')
         else:
-            pass
+            messages.error(request, 'Login or password is incorrect. Try again!')
+            return redirect('login')
     else:
         form = LoginUser()
 
@@ -128,8 +141,10 @@ def log_in_user(request):
     return render(request, 'blog/login.html', context)
 
 
+@login_required(login_url='login')
 def log_out_user(request):
     logout(request)
+    messages.info(request, 'Logged out!')
     return redirect('index')
 
 
@@ -150,6 +165,7 @@ def search(request):
     return render(request, 'blog/index.html', context)
 
 
+@login_required(login_url='login')
 def article_edit(request, article_id):
     article = Article.objects.get(id=article_id)
 
@@ -159,8 +175,11 @@ def article_edit(request, article_id):
             article = form.save(commit=False)
             article.author = request.user
             article.save()
+            messages.success(request, 'Details updated successfully!')
             return redirect('article_detail', article.id)
         else:
+            for field in form.errors:
+                messages.error(request, form.errors[field].as_text())
             return redirect('update_article', article.id)
     else:
         form = AddArticleForm(instance=article)
@@ -173,11 +192,14 @@ def article_edit(request, article_id):
     return render(request, 'blog/add_article.html', context)
 
 
+@login_required(login_url='login')
 def article_delete(request, article_id):
     article = Article.objects.get(id=article_id)
 
     if request.method == 'POST':
         article.delete()
+        messages.warning(request, 'Article deleted successfully!')
+
         return redirect('index')
 
     context = {
@@ -191,7 +213,7 @@ def article_delete(request, article_id):
 def profile(request, user_id):
     user = User.objects.get(id=user_id)
     profile_user = Profile.objects.get(user=user)
-    articles = Article.objects.filter(author=user_id).order_by('-views')[:5]
+    articles = Article.objects.filter(author=user_id).order_by('-views')[:6]
 
     context = {
         'title': 'Your profile',
@@ -216,9 +238,14 @@ def edit_profile(request, user_id):
         if user_form.is_valid() and profile_form.is_valid():
             user_form.save()
             profile_form.save()
+            messages.success(request, 'Updated successfully!')
             return redirect('user_profile', user.id)
         else:
-            return redirect('edit_profile', user.id) # TODO error message
+            for field in user_form.errors:
+                messages.error(request, user_form.errors[field].as_text())
+            for field in profile_form.errors:
+                messages.error(request, profile_form.errors[field].as_text())
+            return redirect('edit_profile', user.id)
     else:
         user_form = UserForm(instance=user)
         profile_form = ProfileForm(instance=profile)
@@ -230,3 +257,10 @@ def edit_profile(request, user_id):
     }
 
     return render(request, 'blog/edit_profile.html', context)
+
+
+def about_site(request):
+    return render(request, 'blog/about.html')
+
+
+

@@ -29,10 +29,14 @@
                         <div class="card-header">
                             <div class="d-flex justify-content-between">
                                 <div>
-                                    <b>Category: {{ article.category }}</b>
+                                    <b>{{ article.category }}</b>
                                 </div>
                                 <div>
-                                    <b>views: {{ article.views }}</b>
+                                    {% if article.views != 1 %}
+                                    <b>{{ article.views }} views</b>
+                                    {% else %}
+                                    <b>{{ article.views }} view</b>
+                                    {% endif %}
                                 </div>
                             </div>
 
@@ -48,7 +52,7 @@
                         <div class="card-footer">
                             <div class="d-flex justify-content-between">
                                 <div>
-                                    <b>By <a href="{% url 'user_profile' article.author.id %}">{{article.author}}</a></b>
+                                    <b><a href="{% url 'user_profile' article.author.id %}">{{article.author}}</a></b>
                                 </div>
                                 <div>
                                     <b>{{ article.created_at }}</b>

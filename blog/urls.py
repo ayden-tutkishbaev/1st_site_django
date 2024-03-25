@@ -16,6 +16,7 @@ urlpatterns = [
     path('edit_article/<int:article_id>', article_edit, name='article_edit'),
     path('delete_article/<int:article_id>', article_delete, name='article_delete'),
     path('profile/<int:user_id>', profile, name='user_profile'),
-    path('edit_profile/<int:user_id>', edit_profile, name='edit_profile')
+    path('edit_profile/<int:user_id>', edit_profile, name='edit_profile'),
+    path('about_site/', about_site, name='about_site')
 ]
 

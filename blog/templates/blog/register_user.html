@@ -23,12 +23,39 @@
 
                 {{ form.as_p }}
 
-                <button type="submit" class="btn btn-primary">
+
+                <button type="submit" class="d-flex justify-content-center btn btn-primary">
                     Register
                 </button>
+                <small class="d-flex justify-content-center">
+                    Already have an account? <a href='{% url "login"%}'> Sign In</a>
+                </small>
+                <div class="text-center mt-4">
+                    <b>ATTENTION! Registering profile means you automatically agree with the <a href='{% url "works_page"%}'>Terms of use</a>!</b>
+                </div>
             </form>
         </div>
     </div>
 </div>
+
+<!--<div class="container row">-->
+<!--    <form method="POST" class='input-field col s6 offset-s3'>-->
+<!--        {% csrf_token %}-->
+<!--        <fieldset>-->
+<!--            <legend>-->
+<!--                Sign Up:-->
+<!--            </legend>-->
+<!--            {{form.as_p}}-->
+<!--        </fieldset>-->
+<!--        <br>-->
+<!--        <button class="btn waves-effect waves-light green accent-2" type="submit" name="action">Submit-->
+<!--            <i class="material-icons right">send</i>-->
+<!--        </button>-->
+<!--        <br><br>-->
+<!--        <div>-->
+<!--        </div>-->
+<!--    </form>-->
+
+<!--</div>-->
 
 {% endblock main %}

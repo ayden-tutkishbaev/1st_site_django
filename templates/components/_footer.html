@@ -122,43 +122,70 @@
 
 {% if request.user.is_authenticated %}
 
-<footer class="bg-body-tertiary text-center text-lg-start">
+<!-- Remove the container if you want to extend the Footer to full width. -->
+
+<footer class="text-center text-white" style="background-color: #3f51b5">
     <!-- Grid container -->
-    <div class="container p-4">
-        <!--Grid row-->
-        <div class="row">
-            <!--Grid column-->
-            <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
-                <h5 class="text-uppercase">Footer text</h5>
+    <div class="container">
+        <!-- Section: Links -->
+        <section class="mt-5">
+            <!-- Grid row-->
+            <div class="row text-center d-flex justify-content-center pt-5">
+                <!-- Grid column -->
 
-                <p>
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iste atque ea quis
-                    molestias. Fugiat pariatur maxime quis culpa corporis vitae repudiandae aliquam
-                    voluptatem veniam, est atque cumque eum delectus sint!
-                </p>
+                <!-- Grid column -->
+                <div class="col-md-2">
+                    <h6 class="text-uppercase font-weight-bold">
+                        <a href="{% url 'works_page' %}" class="text-white">Terms of use</a>
+                    </h6>
+                </div>
+                <!-- Grid column -->
+
+                <!-- Grid column -->
+                <div class="col-md-2">
+                    <h6 class="text-uppercase font-weight-bold">
+                        <a href="{% url 'about_site' %}" class="text-white">About</a>
+                    </h6>
+                </div>
+                <!-- Grid column -->
+
+                <!-- Grid column -->
+                <div class="col-md-2">
+                    <h6 class="text-uppercase font-weight-bold">
+                        <a href="{% url 'about_me_page' %}" class="text-white">About developer</a>
+                    </h6>
+                </div>
+                <!-- Grid column -->
             </div>
-            <!--Grid column-->
+            <!-- Grid row-->
+        </section>
+        <!-- Section: Links -->
 
-            <!--Grid column-->
-            <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
-                <h5 class="text-uppercase">Footer text</h5>
+        <hr class="my-5"/>
 
-                <p>
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iste atque ea quis
-                    molestias. Fugiat pariatur maxime quis culpa corporis vitae repudiandae aliquam
-                    voluptatem veniam, est atque cumque eum delectus sint!
-                </p>
+        <!-- Section: Text -->
+        <section class="mb-5">
+            <div class="row d-flex justify-content-center">
+                <div class="col-lg-8">
+                    <p>
+                        Create different articles. Improve them. Get popular. Share with us.
+                    </p>
+                </div>
             </div>
-            <!--Grid column-->
-        </div>
-        <!--Grid row-->
+        </section>
+
     </div>
     <!-- Grid container -->
 
     <!-- Copyright -->
-    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.05);">
-        © 2020 Copyright:
-        <a class="text-body" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+    <div
+            class="text-center p-3"
+            style="background-color: rgba(0, 0, 0, 0.2)"
+    >
+        © 2024 Copyright:
+        <a class="text-white"
+        >HIKARU'S</a
+        >
     </div>
     <!-- Copyright -->
 </footer>
@@ -175,8 +202,9 @@
 
     <!-- Copyright -->
     <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-        © 2020 Copyright:
-        <a class="text-white" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+        © 2024 Copyright: <a class="text-white"
+        >HIKARU'S</a
+        >
     </div>
     <!-- Copyright -->
 </footer>
